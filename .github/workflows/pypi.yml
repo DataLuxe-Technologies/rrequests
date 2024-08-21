@@ -13,7 +13,7 @@ jobs:
         runs-on: ubuntu-latest
         strategy:
             matrix:
-                target: [x86_64-unknown-linux-gnu, i686-unknown-linux-gnu]
+                target: [x86_64]
         steps:
             - name: Checkout Repo
               uses: actions/checkout@v4
@@ -22,41 +22,16 @@ jobs:
               uses: actions-rs/toolchain@v1
               with:
                   toolchain: stable
-                  target: ${{ matrix.target }}
                   override: true
 
-            - name: Install x86 Build Dependencies
-              if: ${{ matrix.target == 'i686-unknown-linux-gnu' }}
-              run: sudo dpkg --add-architecture i386 && sudo apt-get update && sudo apt-get install libssl-dev:i386 clang
-
-            - name: Install x86_64 Build Dependencies
-              if: ${{ matrix.target == 'x86_64-unknown-linux-gnu' }}
-              run: sudo apt-get update && sudo apt-get install pkg-config libssl-dev clang
-
-            - name: Build wheels x86
+            - name: Build wheels
               uses: PyO3/maturin-action@v1
-              if: ${{ matrix.target == 'i686-unknown-linux-gnu' }}
-              env:
-                  TARGET_CC: clang
-                  OPENSSL_LIB_DIR: /usr/lib/i386-linux-gnu/
-                  OPENSSL_INCLUDE_DIR: /usr/include/openssl/
               with:
                   target: ${{ matrix.target }}
                   args: --release --out dist -i python3.12
-                  manylinux: auto
-
-            - name: Build wheels x86_64
-              uses: PyO3/maturin-action@v1
-              if: ${{ matrix.target == 'x86_64-unknown-linux-gnu' }}
-              env:
-                  TARGET_CC: clang
-              with:
-                  target: ${{ matrix.target }}
-                  args: --release --out dist -i python3.12
-                  manylinux: auto
 
             - name: Upload wheels
-              uses: actions/upload-artifact@v4
+              uses: actions/upload-artifact@v3
               with:
                   name: wheels
                   path: dist
@@ -83,7 +58,7 @@ jobs:
     #               sccache: "true"
 
     #         - name: Upload wheels
-    #           uses: actions/upload-artifact@v4
+    #           uses: actions/upload-artifact@v3
     #           with:
     #               name: wheels
     #               path: dist
@@ -101,7 +76,7 @@ jobs:
                   args: --out dist
 
             - name: Upload sdist
-              uses: actions/upload-artifact@v4
+              uses: actions/upload-artifact@v3
               with:
                   name: wheels
                   path: dist
@@ -111,7 +86,7 @@ jobs:
         runs-on: ubuntu-latest
         needs: [linux, sdist]
         steps:
-            - uses: actions/download-artifact@v4
+            - uses: actions/download-artifact@v3
               with:
                   name: wheels
 
