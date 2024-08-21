@@ -3,7 +3,9 @@ name = "rrequests"
 version = "0.1.0"
 description = "Add your description here"
 authors = [{ name = "João Severo", email = "joaovbsevero@gmail.com" }]
-dependencies = []
+dependencies = [
+    "patchelf>=0.17.2.1",
+]
 readme = "README.md"
 requires-python = ">= 3.8"
 

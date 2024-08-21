@@ -10,3 +10,5 @@
 #   universal: false
 
 -e file:.
+patchelf==0.17.2.1
+    # via rrequests
