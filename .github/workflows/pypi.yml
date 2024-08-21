@@ -29,6 +29,7 @@ jobs:
                   source ~/.bashrc
                   OPENSSL_DIR=$(openssl version -d | awk -F'"' '{print $2}')
                   echo "OPENSSL_DIR=$OPENSSL_DIR" >> $GITHUB_ENV
+                  echo "OPENSSL_DIR=$OPENSSL_DIR" >> $GITHUB_PATH
 
             - name: Test
               run: |
@@ -36,10 +37,11 @@ jobs:
 
             - name: Build wheels
               uses: PyO3/maturin-action@v1
+              env:
+                  OPENSSL_DIR: ${{ env.OPENSSL_DIR }}
               with:
                   target: ${{ matrix.target }}
                   args: --release --out dist --find-interpreter
-                  sccache: "true"
                   manylinux: auto
 
             - name: Upload wheels
