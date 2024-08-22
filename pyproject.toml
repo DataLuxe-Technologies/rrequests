@@ -1,11 +1,11 @@
 [project]
 name = "ruquests"
-version = "0.1.0"
+version = "1.0.0"
 description = "Add your description here"
 authors = [{ name = "João Severo", email = "joaovbsevero@gmail.com" }]
 dependencies = ["patchelf>=0.17.2.1"]
 readme = "README.md"
-requires-python = ">= 3.8"
+requires-python = ">= 3.12"
 
 [build-system]
 requires = ["maturin>=1.2,<2.0"]

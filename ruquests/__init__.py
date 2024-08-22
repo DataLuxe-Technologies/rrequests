@@ -1,4 +1,4 @@
-from rrequests.bindings import (
+from ruquests.bindings import (
     Request,
     RequestAlreadyInitiated,
     RequestFinished,

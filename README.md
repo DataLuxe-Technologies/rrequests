@@ -1,4 +1,4 @@
-# pyreqwests
+# ruquests
 
 ## Usage
 
@@ -9,9 +9,9 @@ Calling HTTP methods (get, post, put, patch, delete) creates a request to be sen
 Simple usage example:
 
 ```python
-import pyreqwests
+import ruquests
 
-r = rrequests.get("http://google.com", headers={"accept": "text/html"}).send()
+r = ruquests.get("http://google.com", headers={"accept": "text/html"}).send()
 print(r.text())
 ```
 
@@ -20,9 +20,9 @@ print(r.text())
 Raising for invalid status code
 
 ```python
-import rrequests
+import ruquests
 
-r = rrequests.post("http://google.com").send()
+r = ruquests.post("http://google.com").send()
 r.raise_for_status()
 ```
 
@@ -31,9 +31,9 @@ r.raise_for_status()
 Checking response headers
 
 ```python
-import rrequests
+import ruquests
 
-r = rrequests.get("http://google.com").send()
+r = ruquests.get("http://google.com").send()
 print(r.headers)
 ```
 
@@ -42,8 +42,8 @@ print(r.headers)
 Checking status code
 
 ```python
-import rrequests
+import ruquests
 
-r = rrequests.get("http://google.com").send()
+r = ruquests.get("http://google.com").send()
 print(r.status_code)
 ```
