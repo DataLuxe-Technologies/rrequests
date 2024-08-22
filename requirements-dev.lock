@@ -11,5 +11,5 @@
 
 -e file:.
 patchelf==0.17.2.1
-    # via rrequests
+    # via ruquests
 pip==24.2

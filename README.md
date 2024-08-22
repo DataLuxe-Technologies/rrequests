@@ -1,4 +1,4 @@
-# rrequests
+# pyreqwests
 
 ## Usage
 
@@ -9,7 +9,7 @@ Calling HTTP methods (get, post, put, patch, delete) creates a request to be sen
 Simple usage example:
 
 ```python
-import rrequests
+import pyreqwests
 
 r = rrequests.get("http://google.com", headers={"accept": "text/html"}).send()
 print(r.text())
